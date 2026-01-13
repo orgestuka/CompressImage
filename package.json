@@ -1,0 +1,17 @@
+{
+  "name": "compress",
+  "version": "1.0.0",
+  "description": "free compression tool for images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Orgest",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "glob": "^13.0.0",
+    "sharp": "^0.34.5"
+  }
+}
