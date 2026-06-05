@@ -94,6 +94,7 @@ async function processFile(filePath) {
 
     try {
         const info = await sharp(filePath)
+            .rotate() // Auto-rotate based on EXIF before stripping metadata
             .webp(CONFIG)
             .toFile(outputPath);
 
@@ -102,7 +103,7 @@ async function processFile(filePath) {
         const newSize = (info.size / 1024).toFixed(2);
         const reduction = (((originalStats.size - info.size) / originalStats.size) * 100).toFixed(1);
 
-        console.log(`✅ ${path.basename(filePath)} \n   ${originalSize}KB ➡️  ${newSize}KB (-${reduction}%) \n   Saved to: ${OUTPUT_DIR_NAME}/${fileName}`);
+        console.log(`✅ ${path.basename(filePath)} \n   ✂️  Stripped all metadata (Exif, XMP, IPTC)\n   ${originalSize}KB ➡️  ${newSize}KB (-${reduction}%) \n   Saved to: ${OUTPUT_DIR_NAME}/${fileName}`);
     } catch (err) {
         console.error(`❌ Error processing ${path.basename(filePath)}:`, err);
     }
